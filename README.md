@@ -1,197 +1,141 @@
-#Q-eHack 2026: Deterministic 100-Sensor ADAS Aggregator#
-**High-Fidelity Zonal Orchestration on QNX RTOS**
+# Q-eHack 2026: Deterministic 100-Sensor ADAS Aggregator
+## High-Fidelity Zonal Orchestration on QNX RTOS
 
 [![RTOS: QNX 7.1](https://img.shields.io/badge/RTOS-QNX_7.1-blue.svg)](https://blackberry.qnx.com/)
 [![IPC: MsgSend/MsgReceive](https://img.shields.io/badge/IPC-QNX_Message_Passing-green.svg)]()
 [![Core: 8-Core Scaling](https://img.shields.io/badge/CPU-8_Core_Affinity-orange.svg)]()
 
-# Q-eHack 2026: Deterministic 100-Sensor ADAS Aggregator  
-High-Fidelity Zonal Orchestration on QNX RTOS
-
 ---
 
 ## 1. Executive Summary
-
-This project implements a deterministic ADAS sensor aggregation system on QNX RTOS.  
-The focus is on real-time scheduling, inter-process communication (IPC), and multi-core execution under high sensor load.
+This project implements a deterministic ADAS sensor aggregation system on the QNX 7.1 Microkernel. By leveraging a **Zonal Architecture** and **8-Core Thread Affinity**, we manage high-bandwidth data streams from **100 concurrent sensors** with nanosecond-level determinism. This report documents the system's evolution from a single-core stress test to a full-scale zonal fusion platform.
 
 ---
 
-## Phase 1: v1.0 — Computational Stress Test
+## 2. System Evolution Lifecycle
 
-### CPU Activity
-![CPU Activity](./OUTPUTS/version1/CPU Activity.png)
+### Phase 1: v1.0 — Computational Stress Test
+Focus: Establishing baseline scheduling performance and context-switching stability.
 
-This shows how CPU cores behave under heavy computation. The scheduler distributes workload efficiently.
+| CPU Activity | CPU Usage | CPU Migration |
+| :---: | :---: | :---: |
+| ![CPU Activity](./OUTPUTS/version%201/CPU%20Activity.png) | ![CPU Usage](./OUTPUTS/version%201/CPU%20usage.png) | ![CPU Migration](./OUTPUTS/version%201/CPU%20Migration.png) |
+| *Distribution under heavy load* | *Stable continuous utilization* | *Migration due to lack of affinity* |
 
----
-
-### CPU Usage
-![CPU Usage](./OUTPUTS/version1/CPU usage.png)
-
-Demonstrates stable CPU usage even under continuous load.
-
----
-
-### CPU Migration
-![CPU Migration](./OUTPUTS/version1/CPU Migration.png)
-
-Threads migrate across cores due to lack of affinity, reducing determinism.
+| Inter-CPU Communication | Summary | Timeline |
+| :---: | :---: | :---: |
+| ![Inter-CPU](./OUTPUTS/version%201/inter%20CPU%20Communication.png) | ![Summary](./OUTPUTS/version%201/summary.png) | ![Timeline](./OUTPUTS/version%201/Timeline.png) |
+| *Initial thread communication* | *Performance overview* | *Timing consistency* |
 
 ---
 
-### Inter-CPU Communication
-![Inter CPU Communication](./OUTPUTS/version1/inter CPU Communication.png)
+### Phase 2: v2.0 — Multicore Transition
+Focus: Moving from centralized to partitioned execution with affinity control.
 
-Initial communication between threads without structured IPC.
+| CPU Activity | CPU Usage | CPU Migration |
+| :---: | :---: | :---: |
+| ![CPU Activity](./OUTPUTS/version%202/CPU%20Activity.png) | ![CPU Usage](./OUTPUTS/version%202/CPU%20Usage.png) | ![CPU Migration](./OUTPUTS/version%202/CPU%20Migration.png) |
+| *Improved core balance* | *Optimized thread placement* | *Reduced migration jitter* |
 
----
-
-### Summary
-![Summary](./OUTPUTS/version1/summary.png)
-
-Overall system performance overview.
-
----
-
-### Timeline
-![Timeline](./OUTPUTS/version1/Timeline.png)
-
-Execution timing consistency under load.
+| Inter-CPU Communication | Summary | Timeline |
+| :---: | :---: | :---: |
+| ![Inter-CPU](./OUTPUTS/version%202/inter%20CPU%20Communication.png) | ![Summary](./OUTPUTS/version%202/Summary.png) | ![Timeline](./OUTPUTS/version%202/Timeline.png) |
+| *Shared memory synchronization* | *Reduced resource contention* | *Predictable execution flow* |
 
 ---
 
-## Phase 2: v2.0 — Multicore Transition
+### Phase 3: v3.0 — Systemic IPC Integration
+Focus: Decoupling drivers from fusion logic using QNX synchronous message passing.
 
-### CPU Activity
-![CPU Activity](./OUTPUTS/version2/CPU Activity.png)
+| CPU Activity | CPU Usage | Inter-CPU Communication |
+| :---: | :---: | :---: |
+| ![CPU Activity](./OUTPUTS/version%203/CPU%20Activity.png) | ![CPU Usage](./OUTPUTS/version%203/CPU%20Usage.png) | ![Inter-CPU](./OUTPUTS/version%203/inter%20CPU%20communication.png) |
+| *MsgSend/MsgReceive loops* | *Low-overhead IPC* | *Deterministic service discovery* |
 
-Improved workload distribution across multiple cores.
-
----
-
-### CPU Usage
-![CPU Usage](./OUTPUTS/version2/CPU Usage.png)
-
-Better CPU balancing compared to Phase 1.
-
----
-
-### CPU Migration
-![CPU Migration](./OUTPUTS/version2/CPU Migration.png)
-
-Reduced migration due to affinity control.
+| Summary | Timeline |
+| :---: | :---: |
+| ![Summary](./OUTPUTS/version%203/Summary.png) | ![Timeline](./OUTPUTS/version%203/Timeline.png) |
+| *Scalable communication* | *Strict timing guarantees* |
 
 ---
 
-### Inter-CPU Communication
-![Inter CPU Communication](./OUTPUTS/version2/inter CPU Communication.png)
+### Phase 4: v4.0 — Zonal Scaling (Current)
+The final architecture scales to simulate **100 Sensors** categorized into 4 hardware-abstracted zones.
 
-Threads now communicate using shared memory and synchronization.
-
----
-
-### Summary
-![Summary](./OUTPUTS/version2/Summary.png)
-
-Improved performance and reduced contention.
-
----
-
-### Timeline
-![Timeline](./OUTPUTS/version2/Timeline.png)
-
-More predictable execution.
+**Zonal Configuration Matrix:**
+| Zone | Priority | Core Cluster | Sensor Count | Primary Function |
+| :--- | :--- | :--- | :--- | :--- |
+| **Vision** | 20 | Cores 0-1 | 12 | Surround/Night/Thermal |
+| **Radar** | 20 | Cores 1-2 | 20 | Long-range & Corner Sensing |
+| **Proximity** | 20 | Cores 2-3 | 24 | Lidar & Ultrasonic Safety |
+| **Vitals** | 20 | Core 3 | 44 | IMU, Wheel Speeds, BMS |
 
 ---
 
-## Phase 3: v3.0 — IPC Integration
+## 3. Technical Architecture
 
-### CPU Activity
-![CPU Activity](./OUTPUTS/version3/CPU Activity.png)
+### 3.1 8-Core Thread Orchestration
+The system leverages hardware partitioning to ensure safety-critical tasks are never starved of cycles.
 
-Stable execution using message passing.
-
----
-
-### CPU Usage
-![CPU Usage](./OUTPUTS/version3/CPU Usage.png)
-
-Efficient CPU utilization.
-
----
-
-### Inter-CPU Communication
-![Inter CPU Communication](./OUTPUTS/version3/inter CPU communication.png)
-
-Deterministic communication using QNX IPC.
-
----
-
-### Summary
-![Summary](./OUTPUTS/version3/Summary.png)
-
-Stable IPC performance under load.
+```mermaid
+graph TD
+    S1[100 Sensors] -->|MsgSend| Z1[Vision Zone]
+    S1 -->|MsgSend| Z2[Radar Zone]
+    S1 -->|MsgSend| Z3[Proximity Zone]
+    S1 -->|MsgSend| Z4[Vitals Zone]
+    
+    Z1 -->|Reduced Summary| CF[Central Fusion Engine]
+    Z2 -->|Reduced Summary| CF
+    Z3 -->|Reduced Summary| CF
+    Z4 -->|Reduced Summary| CF
+    
+    CF -->|Decision| DL[Decision Logic]
+    
+    subgraph Core Affinity Cluster
+        Z1-Z4 -.->|Mask: 0x0F| C03[Cores 0-3]
+        CF -.->|Mask: 0xF0| C47[Cores 4-7]
+    end
+```
 
 ---
 
-### Timeline
-![Timeline](./OUTPUTS/version3/Timeline.png)
+## 4. Benchmark Analysis
 
-Highly predictable execution timing.
+We benchmarked the system under peak load (100 sensors at 1kHz) to validate deterministic response times.
 
----
-
-## Phase 4: v4.0 — Zonal Scaling
-
-The system scales to simulate 100 sensors across 4 zones:
-
-- Vision  
-- Radar  
-- Proximity  
-- Vitals  
-
-Each zone aggregates data before sending it to the fusion engine, reducing IPC load and improving efficiency.
+| Bench Summary | CPU Usage | CPU Activity | Timeline |
+| :---: | :---: | :---: | :---: |
+| ![Summary](./OUTPUTS/Bench%20Mark/Summary.png) | ![CPU Usage](./OUTPUTS/Bench%20Mark/CPU%20usage.png) | ![CPU Activity](./OUTPUTS/Bench%20Mark/CPU%20activity.png) | ![Timeline](./OUTPUTS/Bench%20Mark/timeline.png) |
+| *Cumulative comparison* | *Deterministic headroom* | *Locked affinity behavior* | *Nanosecond jitter control* |
 
 ---
 
-## Benchmark Analysis
+## 5. Fault Tolerance & Safety
 
-### Summary
-![Summary](./OUTPUTS/Bench Mark/Summary.png)
+The system implements a **Pulse-based Watchdog** pattern for failure detection. If a zone fails significantly, the Central Fusion engine triggers an immediate failover.
 
-Overall system performance comparison.
-
----
-
-### CPU Usage
-![CPU Usage](./OUTPUTS/Bench Mark/CPU usage.png)
-
-Stable CPU usage under high load.
+> [!IMPORTANT]
+> **Safety Guarantee**: QNX's `SCHED_FIFO` scheduler ensures that high-priority radar interrupts (Priority 22) always preempt background simulation tasks (Priority 15).
 
 ---
 
-### CPU Activity
-![CPU Activity](./OUTPUTS/Bench Mark/CPU activity.png)
+## 6. Build and Deployment
 
-Deterministic scheduling behavior.
+```bash
+# Compile for QNX Neutrino Target
+make -C src/v4_scaling all
 
----
-
-### Timeline
-![Timeline](./OUTPUTS/Bench Mark/timeline.png)
-
-Low jitter and consistent execution.
+# Run the 8-Core Orchestrator
+./src/v4_scaling/system/orchestrator_8core
+```
 
 ---
 
-## Final Insight
+## 💡 Final Insight
+> "ADAS performance depends not just on algorithms, but on deterministic execution, timing, and synchronization."
 
-> ADAS performance depends not just on algorithms,  
-> but on deterministic execution, timing, and synchronization.
-
-QNX enables this through its microkernel architecture, priority scheduling, and message-driven communication.
+QNX enables this through its microkernel isolation, priority inheritance, and message-driven communication.
 
 ---
-
-Q-eHack 2026 Submission
+**Q-eHack 2026 Submission**
+*Innovation | Performance | Safety*
