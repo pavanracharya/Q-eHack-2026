@@ -12,7 +12,8 @@ High-Fidelity Zonal Orchestration on QNX RTOS
 
 ## 1. Executive Summary
 
-This project implements a deterministic ADAS sensor aggregation system on QNX RTOS with focus on real-time scheduling, IPC, and multi-core execution.
+This project implements a deterministic ADAS sensor aggregation system on QNX RTOS.  
+The focus is on real-time scheduling, inter-process communication (IPC), and multi-core execution under high sensor load.
 
 ---
 
@@ -21,42 +22,42 @@ This project implements a deterministic ADAS sensor aggregation system on QNX RT
 ### CPU Activity
 ![CPU Activity](./OUTPUTS/version1/CPU Activity.png)
 
-Shows how CPU behaves under heavy computation.
+This shows how CPU cores behave under heavy computation. The scheduler distributes workload efficiently.
 
 ---
 
 ### CPU Usage
 ![CPU Usage](./OUTPUTS/version1/CPU usage.png)
 
-Stable usage under load.
+Demonstrates stable CPU usage even under continuous load.
 
 ---
 
 ### CPU Migration
 ![CPU Migration](./OUTPUTS/version1/CPU Migration.png)
 
-Thread movement across cores due to no affinity.
+Threads migrate across cores due to lack of affinity, reducing determinism.
 
 ---
 
 ### Inter-CPU Communication
-![Inter CPU Communication](./OUTPUTS/version1/inter CPU communication.png)
+![Inter CPU Communication](./OUTPUTS/version1/inter CPU Communication.png)
 
-Basic communication pattern.
+Initial communication between threads without structured IPC.
 
 ---
 
 ### Summary
 ![Summary](./OUTPUTS/version1/summary.png)
 
-Overall performance.
+Overall system performance overview.
 
 ---
 
 ### Timeline
 ![Timeline](./OUTPUTS/version1/Timeline.png)
 
-Execution consistency.
+Execution timing consistency under load.
 
 ---
 
@@ -65,35 +66,35 @@ Execution consistency.
 ### CPU Activity
 ![CPU Activity](./OUTPUTS/version2/CPU Activity.png)
 
-Better core distribution.
+Improved workload distribution across multiple cores.
 
 ---
 
 ### CPU Usage
 ![CPU Usage](./OUTPUTS/version2/CPU Usage.png)
 
-Improved balance.
+Better CPU balancing compared to Phase 1.
 
 ---
 
 ### CPU Migration
 ![CPU Migration](./OUTPUTS/version2/CPU Migration.png)
 
-Reduced migration.
+Reduced migration due to affinity control.
 
 ---
 
 ### Inter-CPU Communication
-![Inter CPU Communication](./OUTPUTS/version2/inter CPU communication.png)
+![Inter CPU Communication](./OUTPUTS/version2/inter CPU Communication.png)
 
-Shared memory communication.
+Threads now communicate using shared memory and synchronization.
 
 ---
 
 ### Summary
 ![Summary](./OUTPUTS/version2/Summary.png)
 
-Improved efficiency.
+Improved performance and reduced contention.
 
 ---
 
@@ -109,83 +110,87 @@ More predictable execution.
 ### CPU Activity
 ![CPU Activity](./OUTPUTS/version3/CPU Activity.png)
 
-Stable scheduling.
+Stable execution using message passing.
 
 ---
 
 ### CPU Usage
 ![CPU Usage](./OUTPUTS/version3/CPU Usage.png)
 
-Efficient utilization.
+Efficient CPU utilization.
 
 ---
 
 ### Inter-CPU Communication
 ![Inter CPU Communication](./OUTPUTS/version3/inter CPU communication.png)
 
-Deterministic message passing.
+Deterministic communication using QNX IPC.
 
 ---
 
 ### Summary
 ![Summary](./OUTPUTS/version3/Summary.png)
 
-Stable IPC performance.
+Stable IPC performance under load.
 
 ---
 
 ### Timeline
 ![Timeline](./OUTPUTS/version3/Timeline.png)
 
-Deterministic execution.
+Highly predictable execution timing.
 
 ---
 
 ## Phase 4: v4.0 — Zonal Scaling
 
-100 sensors distributed across zones:
-- Vision
-- Radar
-- Proximity
-- Vitals
+The system scales to simulate 100 sensors across 4 zones:
 
-Zonal processing reduces IPC load and improves scalability.
+- Vision  
+- Radar  
+- Proximity  
+- Vitals  
+
+Each zone aggregates data before sending it to the fusion engine, reducing IPC load and improving efficiency.
 
 ---
 
 ## Benchmark Analysis
 
 ### Summary
-![Summary](./OUTPUTS/benchmark/Summary.png)
+![Summary](./OUTPUTS/Bench Mark/Summary.png)
 
-Overall performance.
+Overall system performance comparison.
 
 ---
 
 ### CPU Usage
-![CPU Usage](./OUTPUTS/benchmark/CPU usage.png)
+![CPU Usage](./OUTPUTS/Bench Mark/CPU usage.png)
 
-Consistent usage.
+Stable CPU usage under high load.
 
 ---
 
 ### CPU Activity
-![CPU Activity](./OUTPUTS/benchmark/CPU activity.png)
+![CPU Activity](./OUTPUTS/Bench Mark/CPU activity.png)
 
-Deterministic scheduling.
+Deterministic scheduling behavior.
 
 ---
 
 ### Timeline
-![Timeline](./OUTPUTS/benchmark/timeline.png)
+![Timeline](./OUTPUTS/Bench Mark/timeline.png)
 
-Low jitter execution.
+Low jitter and consistent execution.
 
 ---
 
 ## Final Insight
 
-> ADAS performance depends on deterministic execution, not just algorithms.
+> ADAS performance depends not just on algorithms,  
+> but on deterministic execution, timing, and synchronization.
+
+QNX enables this through its microkernel architecture, priority scheduling, and message-driven communication.
 
 ---
 
