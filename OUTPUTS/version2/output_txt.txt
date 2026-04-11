@@ -1,0 +1,23 @@
+Starting QNX ADAS Sensor Aggregation System
+
+Fusion Server running [CHID 1]. Waiting for messages...
+Sensor 1 connected to Fusion Engine.
+Sensor 2 connected to Fusion Engine.
+
+[FUSION ENGINE] RECV -> Sensor ID: 2 | Data: 284.1886 | Priority Inheritance Handled
+Sensor 3 connected to Fusion Engine.
+
+[FUSION ENGINE] RECV -> Sensor ID: 2 | Data: 284.1886 | Priority Inheritance Handled
+
+[FUSION ENGINE] RECV -> Sensor ID: 2 | Data: 284.1886 | Priority Inheritance Handled
+
+[FUSION ENGINE] RECV -> Sensor ID: 2 | Data: 284.1886 | Priority Inheritance Handled
+
+[FUSION ENGINE] RECV -> Sensor ID: 2 | Data: 284.1886 | Priority Inheritance Handled
+
+[FUSION ENGINE] RECV -> Sensor ID: 1 | Data: 1533.0804 | Priority Inheritance Handled
+Sensor 4 connected to Fusion Engine.
+
+[FUSION ENGINE] RECV -> Sensor ID: 4 | Data: 25.5129 | Priority Inheritance Handled
+
+[FUSION ENGINE] RECV -> Sensor ID: 2 | Data: 284.1886 | Priority Inheritance Handled
