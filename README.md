@@ -1,11 +1,9 @@
-# Technical Specification: QNX RTOS Deterministic Sensor Data Aggregator
+# Technical Specification: QNX RTOS Deterministic ADAS Aggregator
 ## High-Fidelity Zonal Orchestration for Autonomous Platforms (v4.0 Scaling)
 
 [![RTOS: QNX 7.1](https://img.shields.io/badge/RTOS-QNX_7.1-blue.svg)](https://blackberry.qnx.com/)
 [![IPC: MsgSend/MsgReceive](https://img.shields.io/badge/IPC-QNX_Message_Passing-green.svg)]()
 [![Core: 8-Core Scaling](https://img.shields.io/badge/CPU-8_Core_Affinity-orange.svg)]()
-
-
 
 ---
 
@@ -218,10 +216,10 @@ The project utilizes specific QNX Microkernel primitives to achieve hard real-ti
 ## 8. Analytics & Visual Evidence
 For all performance graphs and diagnostic timelines, navigate to the following directories:
 
-- [**./OUTPUTS/Benchmark/**](./OUTPUTS/Benchmark/): Comparative QNX vs. Linux performance (Latency/Jitter).
-- [**./OUTPUTS/version1/**](./OUTPUTS/version1/): Phase 1 baseline logs.
-- [**./OUTPUTS/version2/**](./OUTPUTS/version2/): Phase 2 multicore migration logs.
-- [**./OUTPUTS/version3/**](./OUTPUTS/version3/): Phase 3 IPC stability logs.
+- [**./QNX/OUTPUTS/Benchmark/**](./QNX/OUTPUTS/Benchmark/): Comparative QNX vs. Linux performance (Latency/Jitter).
+- [**./QNX/OUTPUTS/version1/**](./QNX/OUTPUTS/version1/): Phase 1 baseline logs.
+- [**./QNX/OUTPUTS/version2/**](./QNX/OUTPUTS/version2/): Phase 2 multicore migration logs.
+- [**./QNX/OUTPUTS/version3/**](./QNX/OUTPUTS/version3/): Phase 3 IPC stability logs.
 
 ---
 
@@ -234,10 +232,10 @@ For all performance graphs and diagnostic timelines, navigate to the following d
 ### 9.2 Build Instructions
 ```bash
 # Compile for QNX Neutrino Target
-make -C src/v4_scaling all
+make -C QNX/src/v4_scaling all
 
 # Verify Binaries
-ls -l src/v4_scaling/system/orchestrator_8core
+ls -l QNX/src/v4_scaling/system/orchestrator_8core
 ```
 
 ---

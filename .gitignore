@@ -1,0 +1,31 @@
+# Binaries and Build Artifacts
+*.exe
+*.o
+*.obj
+*.bin
+*.out
+OUTPUTS/
+QNX/OUTPUTS/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Project Temporary Artifacts
+implementation_plan.md
+task.md
+walkthrough.md
+walkthrough_version3
+implementation_plan_ubuntu
+
+# System Files
+Thumbs.db
+.DS_Store
