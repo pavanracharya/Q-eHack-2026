@@ -1,0 +1,47 @@
+[1;37m============================================================[0m
+[1;36m       QNX RTOS v4: SCALABLE ADAS SENSOR AGGREGATOR         [0m
+[1;34m         [ 8-CORE AFFINITY | 100-SENSOR REAL-TIME ]         [0m
+[1;37m============================================================[0m
+[SYSTEM] Launching Session ID: 1605634 (Dynamic IPC active)
+[1;33m[ZONE 0] Aggregator Online: adas_zone_vision_1605634 (PID: 1605634) | Status: Awaiting Fleet Init...[0m
+[ZONE 0] Waiting for Central Brain (adas_central_fusion_1605634)...
+[1;33m[ZONE 1] Aggregator Online: adas_zone_radar_1605634 (PID: 1605634) | Status: Awaiting Fleet Init...[0m
+[ZONE 1] Waiting for Central Brain (adas_central_fusion_1605634)...
+[1;33m[ZONE 2] Aggregator Online: adas_zone_proximity_1605634 (PID: 1605634) | Status: Awaiting Fleet Init...[0m
+[ZONE 2] Waiting for Central Brain (adas_central_fusion_1605634)...
+[1;33m[ZONE 3] Aggregator Online: adas_zone_vitals_1605634 (PID: 1605634) | Status: Awaiting Fleet Init...[0m
+[ZONE 3] Waiting for Central Brain (adas_central_fusion_1605634)...
+[1;36m[CENTRAL] Fusion Brain Online: adas_central_fusion_1605634 | Status: Ready for High-Fidelity Data[0m
+[1;36m[CENTRAL] Fusion Engine Online (Priority: RT, Affinity: Cores 4-7)[0m
+[1;30m[FUSION] System Nominal: Actively fusing 500 sensor samples...[0m
+[FLEET] Connected to all dynamic zones. Starting 100-sensor stream...
+[SYSTEM] 100-Sensor scaling active across 8 Cores.
+[SYSTEM] Hierarchy: [Sensors] -> [Zones] -> [Central Fusion]
+[1;33m[ZONE 0] Aggregation Link Established to adas_central_fusion_1605634. Pipeline Active.[0m
+
+[1;36m[MISSION CHAPTER] >>> Step 1: System Warmup & Baseline Synchronization <<<[0m
+[1;33m[ZONE 1] Aggregation Link Established to adas_central_fusion_1605634. Pipeline Active.[0m
+[1;33m[ZONE 2] Aggregation Link Established to adas_central_fusion_1605634. Pipeline Active.[0m
+[1;33m[ZONE 3] Aggregation Link Established to adas_central_fusion_1605634. Pipeline Active.[0m
+
+[1;36m[MISSION CHAPTER] >>> Step 2: Conflict Resolution (Trust Logic under Rain) <<<[0m
+[1;33m[TRUST] Sensor Conflict Detected in RAIN Condition[0m
+[1;32m[RESOLVE] Reliability Model: RAIN detected -> Trusting RADAR[0m
+
+[1;36m[MISSION CHAPTER] >>> Step 3: Latency Preemption (Prioritizing Fast Radar) <<<[0m
+[1;33m[TRUST] Sensor Conflict Detected in FOG Condition[0m
+[1;32m[RESOLVE] Reliability Model: FOG detected -> Trusting LIDAR / RADAR[0m
+
+[1;36m[MISSION CHAPTER] >>> Step 4: Adaptive Throttling (Handling Data Ingress Burst) <<<[0m
+[1;33m[TRUST] Sensor Conflict Detected in NIGHT Condition[0m
+[1;32m[RESOLVE] Reliability Model: NIGHT detected -> Trusting THERMAL / RADAR[0m
+[1;34m[PRIORITY] RADAR (High-Speed) -> Initiating Emergency Braking Sequence[0m
+[1;30m[FUSION] Camera processing lag detected (120ms). Refining path in next cycle.[0m
+[1;34m[PRIORITY] RADAR (High-Speed) -> Initiating Emergency Braking Sequence[0m
+[1;30m[FUSION] Camera processing lag detected (120ms). Refining path in next cycle.[0m
+[1;34m[PRIORITY] RADAR (High-Speed) -> Initiating Emergency Braking Sequence[0m
+[1;30m[FUSION] Camera processing lag detected (120ms). Refining path in next cycle.[0m
+[1;34m[PRIORITY] RADAR (High-Speed) -> Initiating Emergency Braking Sequence[0m
+[1;30m[FUSION] Camera processing lag detected (120ms). Refining path in next cycle.[0m
+
+[1;31m[SYSTEM] Signal received. Shutting down and detaching QNX names...
