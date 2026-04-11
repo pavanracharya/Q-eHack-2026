@@ -1,5 +1,8 @@
+
 # Technical Specification: QNX RTOS Deterministic ADAS Aggregator
 ## High-Fidelity Zonal Orchestration for Autonomous Platforms (v4.0 Scaling)
+## Team name: One Percent | College: The National Institue of Engineering
+### Team members: Pavan R | B Manikanta | Ranadheer Varma
 
 [![RTOS: QNX 7.1](https://img.shields.io/badge/RTOS-QNX_7.1-blue.svg)](https://blackberry.qnx.com/)
 [![IPC: MsgSend/MsgReceive](https://img.shields.io/badge/IPC-QNX_Message_Passing-green.svg)]()
