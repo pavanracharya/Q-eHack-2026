@@ -219,10 +219,10 @@ The project utilizes specific QNX Microkernel primitives to achieve hard real-ti
 ## 8. Analytics & Visual Evidence
 For all performance graphs and diagnostic timelines, navigate to the following directories:
 
-- [**./QNX/OUTPUTS/Benchmark/**](./QNX/OUTPUTS/Benchmark): Comparative QNX vs. Linux performance (Latency/Jitter).
-- [**./QNX/OUTPUTS/version1/**](./QNX/OUTPUTS/version1): Phase 1 baseline logs.
-- [**./QNX/OUTPUTS/version2/**](./QNX/OUTPUTS/version2): Phase 2 multicore migration logs.
-- [**./QNX/OUTPUTS/version3/**](./QNX/OUTPUTS/version3): Phase 3 IPC stability logs.
+- [**./QNX/OUTPUTS/Benchmark/**](./OUTPUTS/Benchmark): Comparative QNX vs. Linux performance (Latency/Jitter).
+- [**./QNX/OUTPUTS/version1/**](./OUTPUTS/version1): Phase 1 baseline logs.
+- [**./QNX/OUTPUTS/version2/**](./OUTPUTS/version2): Phase 2 multicore migration logs.
+- [**./QNX/OUTPUTS/version3/**](./OUTPUTS/version3): Phase 3 IPC stability logs.
 
 ---
 
